@@ -13,13 +13,13 @@ describe TextBelt::PhoneValidator do
     it 'raises an error if phone_number is not the right type' do
       expect{
         described_class.validate(integer_phone, "US")
-      }.to raise_error(TextBelt::IntegerPhoneError)
+      }.to raise_error(TextBelt::Errors::IntegerPhoneError)
     end
 
     it 'raises an error if phone_number is not parseable' do
       expect{
         described_class.validate(invalid_number, "US")
-      }.to raise_error(TextBelt::InvalidPhoneNumberError)
+      }.to raise_error(TextBelt::Errors::InvalidPhoneNumberError)
     end
   end
 end

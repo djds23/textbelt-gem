@@ -11,37 +11,37 @@ describe TextBelt::ResponseValidator do
     it 'raises an error if server says number is blacklisted' do
       expect{
         described_class.validate(valid_phone, blacklist_hash)
-      }.to raise_error(TextBelt::BlackListedNumberError)
+      }.to raise_error(TextBelt::Errors::BlackListedNumberError)
     end
 
     it 'raises an error if http server has a gateway error' do
       expect{
         described_class.validate(valid_phone, gateway_hash)
-      }.to raise_error(TextBelt::GatewayFailureError)
+      }.to raise_error(TextBelt::Errors::GatewayFailureError)
     end
 
     it "raises an error if http server cannot validate the phone's quota" do
       expect{
         described_class.validate(valid_phone, invalid_phone_quota_hash)
-      }.to raise_error(TextBelt::PhoneCouldNotValidateError)
+      }.to raise_error(TextBelt::Errors::PhoneCouldNotValidateError)
     end
 
     it "raises an error if http server cannot validate the ip's quota" do
       expect{
         described_class.validate(valid_phone, invalid_ip_quota_hash)
-      }.to raise_error(TextBelt::IPCouldNotValidateError)
+      }.to raise_error(TextBelt::Errors::IPCouldNotValidateError)
     end
 
     it "raises an error if the phone's quota has been exceeded" do
       expect{
         described_class.validate(valid_phone, phone_quota_exceeded_hash)
-      }.to raise_error(TextBelt::PhoneQuotaExceededError)
+      }.to raise_error(TextBelt::Errors::PhoneQuotaExceededError)
     end
 
     it "raises an error if the IP's quota has been exceeded" do
       expect{
         described_class.validate(valid_phone, ip_quota_exceeded_hash)
-      }.to raise_error(TextBelt::IPQuotaExceededError)
+      }.to raise_error(TextBelt::Errors::IPQuotaExceededError)
     end
   end
 end
