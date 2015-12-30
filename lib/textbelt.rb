@@ -1,7 +1,9 @@
 # @author Dean Silfen
 module TextBelt
   extend self
-  require "textbelt/version"
+  require 'textbelt/validator'
+  require 'textbelt/version'
+  require 'textbelt/errors'
   require 'net/http'
   require 'json'
   require 'uri'
@@ -14,6 +16,7 @@ module TextBelt
   # @return [Boolean] true if TextBelt successfully passed on the message,
   #   false if not
   def text(number, message)
+    PhoneValidator.validate(number)
     res = Net::HTTP.post_form(base_url, number: number, message: message)
     body = JSON.parse(res.body)
     !!body['success'.freeze]

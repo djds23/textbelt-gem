@@ -4,6 +4,7 @@ describe TextBelt do
   let(:base_url) { described_class.send(:base_url) }
   let(:fail_phone) { '1-234-5678' }
   let(:success_phone) { '8-765-3210' }
+  let(:integer_phone) { 8_765_3210 }
 
   describe '#text' do
     it 'returns true we receive a success response' do
@@ -14,6 +15,10 @@ describe TextBelt do
     it 'returns false we receive a failure response' do
       stub_request(:post, base_url).to_return(body: failure_body)
       expect(described_class.text(fail_phone, "text")).to be_falsey
+    end
+
+    it 'raises an error if not the right type' do
+      expect{described_class.text(integer_phone, "text")}.to raise_error(described_class::IntegerPhoneError)
     end
   end
 
