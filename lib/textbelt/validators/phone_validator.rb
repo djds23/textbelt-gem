@@ -1,9 +1,9 @@
-# File to hold all the errors for TextBelt
-#
-# @author Dean Silfen
 module TextBelt
   require 'phonelib'
 
+  # Validator for outgoing phone numbers
+  #
+  # @author Dean Silfen
   class PhoneValidator
     class << self
 
@@ -11,6 +11,9 @@ module TextBelt
       #
       # @param phone_number [String] number to send the text to
       # @param country [String] ISO 3166 Country code for destination country 
+      #
+      # @raise [Errors::IntegerPhoneError] error raised if phone number is passed as an integer
+      # @raise [Errors::InvalidPhoneNumberError] error raised if phone number is not valid
       #
       # @return [Boolean] true if TextBelt successfully passed on the message,
       #   false if not
