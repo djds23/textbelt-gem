@@ -1,5 +1,7 @@
 # Textbelt
 
+[![Build Status](https://travis-ci.org/djds23/textbelt.svg?branch=master)](https://travis-ci.org/djds23/textbelt)
+
 A ruby interface for sending texts free of charge through [TextBelt](http://textbelt.com/).
 
 ## Installation
