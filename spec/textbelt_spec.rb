@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe TextBelt do
   let(:base_url) { described_class.send(:base_url) }
-  let(:fail_phone) { 12345678 }
-  let(:success_phone) { 87653210 }
+  let(:fail_phone) { '1-234-5678' }
+  let(:success_phone) { '8-765-3210' }
 
   describe '#text' do
     it 'returns true we receive a success response' do
