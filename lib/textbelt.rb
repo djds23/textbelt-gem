@@ -1,3 +1,4 @@
+# @author Dean Silfen
 module TextBelt
   extend self
   require "textbelt/version"
@@ -7,7 +8,7 @@ module TextBelt
 
   # Get a list of categories from the service
   #
-  # @param number [Fixnum] number to send the text to
+  # @param number [String] number to send the text to
   # @param message [String] the body of the text message
   #
   # @return [Boolean] true if TextBelt successfully passed on the message,
