@@ -21,7 +21,7 @@ module TextBelt
 
         phone = Phonelib.parse phone_number
 
-        if phone.invalid_for_country? country
+        if phone.impossible?
           raise TextBelt::InvalidPhoneNumberError, "#{phone_number} is not valid in destination country #{country}"
         end
       end

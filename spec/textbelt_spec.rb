@@ -11,11 +11,6 @@ describe TextBelt do
       stub_request(:post, us_url).to_return(body: success_body)
       expect(described_class.text(success_phone, "text")).to be_truthy
     end
-
-    it 'returns false we receive a failure response' do
-      stub_request(:post, us_url).to_return(body: failure_body)
-      expect(described_class.text(fail_phone, "text")).to be_falsey
-    end
   end
 
   describe '#url_for' do
