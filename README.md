@@ -23,7 +23,7 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-TextBelt.text(01234567, 'Hello, World!') #=> Your favorite cell phone number gets a text message
+TextBelt.text('01234567', 'Hello, World!') #=> Your favorite cell phone number gets a text message
 ```
 
 ## Development
