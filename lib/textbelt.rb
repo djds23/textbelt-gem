@@ -15,15 +15,17 @@ module TextBelt
   # @param message [String] the body of the text message
   # @param country [String] ISO 3166 Country code for destination country
   #
-  # @raise [BlackListedNumberError] http server says number is blacklisted
-  # @raise [GatewayFailureError] http server had a gateway error communicating with carrier
-  # @raise [PhoneCouldNotValidateError] http server cannot validate the phone\'s quota
-  # @raise [IPCouldNotValidateError] http server cannot validate the ip's quota
-  # @raise [PhoneQuotaExceededError] the phone's quota has been exceeded
-  # @raise [IPQuotaExceededError] IP's quota has been exceeded
+  # @raise [Errors::IntegerPhoneError] phone number passed as an integer
+  # @raise [Errors::InvalidPhoneNumberError] phone number is not valid
+  # @raise [Errors::BlackListedNumberError] http server says number is blacklisted
+  # @raise [Errors::GatewayFailureError] http server had a gateway error communicating with carrier
+  # @raise [Errors::PhoneCouldNotValidateError] http server cannot validate the phone\'s quota
+  # @raise [Errors::IPCouldNotValidateError] http server cannot validate the ip's quota
+  # @raise [Errors::PhoneQuotaExceededError] the phone's quota has been exceeded
+  # @raise [Errors::IPQuotaExceededError] IP's quota has been exceeded
   #
-  # @return [Boolean] true if TextBelt successfully passed on the message,
-  #   false if not
+  # @return [Boolean] true if TextBelt successfully passed on the message
+  #
   def text(phone_number, message, country = 'US')
     PhoneValidator.validate(phone_number, country)
     url = url_for(country)
