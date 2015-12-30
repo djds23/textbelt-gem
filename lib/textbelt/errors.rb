@@ -7,4 +7,10 @@ module TextBelt
   #
   # @author Dean Silfen
   class IntegerPhoneError < StandardError; end
+
+  # Error to be raised if phone number is not valid in destination country
+  #
+  # @author Dean Silfen
+  class InvalidPhoneNumberError < StandardError; end
+
 end
