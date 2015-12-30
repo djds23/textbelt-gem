@@ -56,7 +56,4 @@ module TextBelt
   module_function :text
   module_function :base_url
   module_function :url_for
-
-  private :base_url
-  private :url_for
 end
