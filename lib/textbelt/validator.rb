@@ -28,6 +28,7 @@ module TextBelt
 
       private
 
+      # @private
       def is_a_string?(phone_number)
         phone_number.is_a? String
       end
