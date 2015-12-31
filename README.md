@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 
-The main API is `TextBelt.text`. Sending messages should be as simple as passing a number & message, then watching it go!
+The main API is [`TextBelt.text`](http://www.rubydoc.info/github/djds23/textbelt-gem/master/TextBelt.text). Sending messages should be as simple as passing a number & message, then watching it go!
 
 ```ruby
 TextBelt.text('01234567', 'Hello, World!') #=> Your favorite cell phone number gets a text message
