@@ -16,13 +16,13 @@ module TextBelt
       #   false if not
       def validate(phone_number, country)
         unless  is_a_string?(phone_number)
-          raise TextBelt::IntegerPhoneError, "Please ensure to pass phone numbers as strings."
+          raise TextBelt::Errors::IntegerPhoneError, "Please ensure to pass phone numbers as strings."
         end
 
         phone = Phonelib.parse phone_number
 
         if phone.impossible?
-          raise TextBelt::InvalidPhoneNumberError, "#{phone_number} is not valid in destination country #{country}"
+          raise TextBelt::Errors::InvalidPhoneNumberError, "#{phone_number} is not valid in destination country #{country}"
         end
       end
 
