@@ -22,10 +22,27 @@ Or install it yourself as:
 
 ## Usage
 
+The main API is [`TextBelt.text`](http://www.rubydoc.info/github/djds23/textbelt-gem/master/TextBelt.text). Sending messages should be as simple as passing a number & message, then watching it go!
+
 ```ruby
 TextBelt.text('01234567', 'Hello, World!') #=> Your favorite cell phone number gets a text message
 ```
 
+If there are any errors that happen server side, we raise then as exceptions locally, see the documentation for `text` for a look at the different errors that might be raised.
+
+```ruby
+require 'textbelt'
+
+def send_cats(number)
+  TextBelt.text(number, 'https://www.youtube.com/watch?v=tntOCGkgt98')
+rescue TextBelt::Errors::PhoneQuotaExceededError => e
+  puts 'too many cats!!!!'
+rescue TextBelt::Errors::BlackListedNumberError => e
+  puts 'can not send any more cats to that number :('
+end
+```
+
+[See the full documentation here.](http://www.rubydoc.info/github/djds23/textbelt-gem/master)
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
