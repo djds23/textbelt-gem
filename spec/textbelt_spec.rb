@@ -1,35 +1,26 @@
 require 'spec_helper'
 
 describe TextBelt do
-  let(:base_url) { described_class.send(:base_url) }
-  let(:fail_phone) { '1-202-555-0180' }
-  let(:success_phone) { '1-202-555-0170' }
-  let(:us_url) { described_class.send(:url_for, 'US') }
+  let(:success_phone) {  }
+  let(:us_url) { described_class::TextUtils.url_for 'US' }
 
   describe '#text' do
     it 'returns true we receive a success response' do
       stub_request(:post, us_url).to_return(body: success_body)
-      expect(described_class.text(success_phone, "text")).to be_truthy
+      expect(described_class.text('202-555-0170', "text")).to be_truthy
     end
-  end
 
-  describe '#url_for' do
-    it 'returns the right url for the right country code' do
-      expect(described_class.send(:url_for, 'US')).to eq URI('http://textbelt.com/text')
-      expect(described_class.send(:url_for, 'CA')).to eq URI('http://textbelt.com/canada')
-      expect(described_class.send(:url_for, 'GB')).to eq URI('http://textbelt.com/intl')
+    it 'raises an exception if number is not passed as a string' do
+       expect{
+         described_class.text(666_666_6666, "text")
+       }.to raise_error(described_class::Errors::IntegerPhoneError)
     end
-  end
 
-  describe '#base_url' do
-    it 'has a default value' do
-      expect(described_class.send(:base_url)).to eq('http://textbelt.com/')
-    end
-  end
-
-  describe '::VERSION' do
-    it 'has a version' do
-      expect(described_class::VERSION).to be_a(String)
+    it 'raises an exception if number cannot be parsed by phonelib' do
+      expect{
+         described_class.text('this is not a phone number', "text")
+       }.to raise_error(described_class::Errors::InvalidPhoneNumberError)
     end
   end
 end
+

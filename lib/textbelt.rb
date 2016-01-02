@@ -38,3 +38,4 @@ module TextBelt
 
   module_function :text
 end
+
