@@ -2,6 +2,7 @@
 module TextBelt
   require 'textbelt/validators/response_validator'
   require 'textbelt/validators/phone_validator'
+  require 'textbelt/textutils'
   require 'textbelt/version'
   require 'textbelt/errors'
   require 'net/http'
@@ -28,34 +29,13 @@ module TextBelt
   #
   def text(phone_number, message, country = 'US')
     PhoneValidator.validate(phone_number, country)
-    url = url_for(country)
+    url = TextUtils.url_for(country)
     res = Net::HTTP.post_form(url, number: phone_number, message: message)
     body = JSON.parse(res.body)
     ResponseValidator.validate(phone_number, body)
     body['success'.freeze]
   end
 
-  # @private
-  def url_for(country)
-    url_string =
-      case country
-      when 'US'
-        base_url + 'text'
-      when 'CA'
-        base_url + 'canada'
-      else
-        base_url + 'intl'
-      end
-
-    URI(url_string)
-  end
-
-  # @private
-  def base_url
-    'http://textbelt.com/'
-  end
-
   module_function :text
-  module_function :base_url
-  module_function :url_for
 end
+
