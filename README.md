@@ -1,6 +1,7 @@
 # Textbelt
 
 [![Build Status](https://travis-ci.org/djds23/textbelt-gem.svg?branch=master)](https://travis-ci.org/djds23/textbelt-gem)
+[![Gem Version](https://badge.fury.io/rb/textbelt.svg)](https://rubygems.org/gems/textbelt)
 
 A ruby interface for sending texts free of charge through [TextBelt](http://textbelt.com/).
 
