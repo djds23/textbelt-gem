@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A ruby interface for sending texts with http://textbelt.com/}
   spec.description   = %q{A ruby interface for sending texts with http://textbelt.com/. Complete with configurable textbelt endpoint, in case you are hosting your own instance.}
-  spec.homepage      = "http://www.rubydoc.info/github/djds23/textbelt"
+  spec.homepage      = "https://github.com/djds23/textbelt-gem"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
