@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["dean.silfen@gmail.com"]
 
   spec.summary       = %q{A ruby interface for sending texts with http://textbelt.com/}
-  spec.description   = %q{A ruby interface for sending texts with http://textbelt.com/. Complete with configurable textbelt endpoint, in case you are hosting your own instance.}
+  spec.description   = %q{A ruby interface for sending texts with http://textbelt.com/}
   spec.homepage      = "https://github.com/djds23/textbelt-gem"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
