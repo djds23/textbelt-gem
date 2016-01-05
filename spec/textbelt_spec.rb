@@ -22,5 +22,21 @@ describe TextBelt do
        }.to raise_error(described_class::Errors::InvalidPhoneNumberError)
     end
   end
+
+  it 'can configure its url' do
+    configured_url = 'http://myselfhostedservice.io/'
+    described_class.configure do |config|
+      config.textbelt_url = configured_url
+    end
+
+    expect(described_class::TextUtils.url_for('US')).to eq URI(configured_url + 'text')
+
+    default_url = 'http://textbelt.com/' # reset url for future specs
+    described_class.configure do |config|
+      config.textbelt_url = default_url
+    end
+
+    expect(described_class::TextUtils.url_for('US')).to eq URI(default_url + 'text')
+  end
 end
 

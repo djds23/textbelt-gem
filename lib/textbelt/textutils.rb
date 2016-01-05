@@ -26,7 +26,7 @@ module TextBelt
 
       # @private
       def base_url
-        'http://textbelt.com/'
+        TextBelt.configuration.textbelt_url
       end
     end
   end
