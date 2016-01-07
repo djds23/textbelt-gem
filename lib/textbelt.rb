@@ -5,10 +5,21 @@ module TextBelt
   require 'textbelt/textutils'
   require 'textbelt/version'
   require 'textbelt/errors'
+  require 'configurations'
   require 'net/http'
   require 'json'
   require 'uri'
 
+  include Configurations
+  configurable String, :textbelt_url do |value|
+    unless value =~ /\A#{URI::regexp(['http', 'https'])}\z/
+      raise InvalidURLError, "textbelt_url must be a valid URL, #{value} does not appear valid to URI::regexp"
+    end
+  end
+
+  configuration_defaults do |config|
+    config.textbelt_url = "http://textbelt.com/"
+  end
 
   # Get a list of categories from the service
   #
