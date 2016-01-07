@@ -11,14 +11,14 @@ module TextBelt
   require 'uri'
 
   include Configurations
-  configurable String, :textbelt_url do |value|
+  configurable String, :textbelt_uri do |value|
     unless value =~ /\A#{URI::regexp(['http', 'https'])}\z/
-      raise InvalidURLError, "textbelt_url must be a valid URL, #{value} does not appear valid to URI::regexp"
+      raise InvalidURIError, "textbelt_uri must be a valid URI, #{value} does not appear valid to URI::regexp"
     end
   end
 
   configuration_defaults do |config|
-    config.textbelt_url = "http://textbelt.com/"
+    config.textbelt_uri = "http://textbelt.com/"
   end
 
   # Get a list of categories from the service
@@ -40,8 +40,8 @@ module TextBelt
   #
   def text(phone_number, message, country = 'US')
     PhoneValidator.validate(phone_number, country)
-    url = TextUtils.url_for(country)
-    res = Net::HTTP.post_form(url, number: phone_number, message: message)
+    uri = TextUtils.uri_for(country)
+    res = Net::HTTP.post_form(uri, number: phone_number, message: message)
     body = JSON.parse(res.body)
     ResponseValidator.validate(phone_number, body)
     body['success'.freeze]

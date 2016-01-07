@@ -43,6 +43,11 @@ module TextBelt
     #
     # @author Dean Silfen
     class IPQuotaExceededError < StandardError; end
+
+    # Error raised if configured base URI is not valid
+    #
+    # @author Dean Silfen
+    class InvalidURIError < StandardError; end
   end
 end
 

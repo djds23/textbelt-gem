@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe TextBelt do
   let(:success_phone) {  }
-  let(:us_url) { described_class::TextUtils.url_for 'US' }
+  let(:us_uri) { described_class::TextUtils.uri_for 'US' }
 
   describe '#text' do
     it 'returns true we receive a success response' do
-      stub_request(:post, us_url).to_return(body: success_body)
+      stub_request(:post, us_uri).to_return(body: success_body)
       expect(described_class.text('202-555-0170', "text")).to be_truthy
     end
 
@@ -23,20 +23,20 @@ describe TextBelt do
     end
   end
 
-  it 'can configure its url' do
-    configured_url = 'http://myselfhostedservice.io/'
+  it 'can configure its uri' do
+    configured_uri = 'http://myselfhostedservice.io/'
     described_class.configure do |config|
-      config.textbelt_url = configured_url
+      config.textbelt_uri = configured_uri
     end
 
-    expect(described_class::TextUtils.url_for('US')).to eq URI(configured_url + 'text')
+    expect(described_class::TextUtils.uri_for('US')).to eq URI(configured_uri + 'text')
 
-    default_url = 'http://textbelt.com/' # reset url for future specs
+    default_uri = 'http://textbelt.com/' # reset uri for future specs
     described_class.configure do |config|
-      config.textbelt_url = default_url
+      config.textbelt_uri = default_uri
     end
 
-    expect(described_class::TextUtils.url_for('US')).to eq URI(default_url + 'text')
+    expect(described_class::TextUtils.uri_for('US')).to eq URI(default_uri + 'text')
   end
 end
 

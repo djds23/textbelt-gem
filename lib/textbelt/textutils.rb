@@ -3,30 +3,30 @@ module TextBelt
   class TextUtils
     class << self
 
-      # Return the correct URL for the correct country code
+      # Return the correct URI for the correct country code
       #
       # @param country [String] ISO 3166 Country code for destination country
       #
-      # @return [URI] URI object holding the url to match the country code
-      def url_for(country)
-        url_string =
+      # @return [URI] URI object holding the uri to match the country code
+      def uri_for(country)
+        uri_string =
           case country
           when 'US'
-            base_url + 'text'
+            base_uri + 'text'
           when 'CA'
-            base_url + 'canada'
+            base_uri + 'canada'
           else
-            base_url + 'intl'
+            base_uri + 'intl'
           end
 
-        URI(url_string)
+        URI(uri_string)
       end
 
       private
 
       # @private
-      def base_url
-        TextBelt.configuration.textbelt_url
+      def base_uri
+        TextBelt.configuration.textbelt_uri
       end
     end
   end
